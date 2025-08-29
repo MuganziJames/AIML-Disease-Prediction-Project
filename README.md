@@ -1,12 +1,13 @@
 # Disease Prediction Toolkit - Heart Disease Risk Assessment
 
-A complete machine learning pipeline for predicting heart disease risk using clinical features. This project demonstrates the full ML workflow from data exploration to model deployment.
+Colab-first workflow to train and evaluate heart disease prediction models.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Project Structure](#project-structure)
 - [Quick Start](#quick-start)
+- [What You'll Learn](#what-youll-learn)
 - [Dataset](#dataset)
 - [Features](#features)
 - [Models](#models)
@@ -29,25 +30,11 @@ This toolkit provides a comprehensive solution for heart disease prediction usin
 
 ```
 disease-prediction-toolkit/
-├── data/                    # Dataset storage
+├── data/
 │   └── heart_dataset.csv
-├── notebooks/               # Jupyter notebooks
-│   ├── eda.ipynb           # Exploratory Data Analysis
-│   ├── training.ipynb      # Model training pipeline
-│   └── demo.ipynb          # Prediction demonstrations
-├── src/                     # Source code
-│   └── utils.py            # Utility functions
-├── models/                  # Saved models
-│   ├── best_model.pkl      # Best performing model
-│   ├── logistic_regression.pkl
-│   ├── random_forest.pkl
-│   └── model_info.json     # Model metadata
-├── reports/                 # Generated visualizations
-│   ├── confusion_matrix.png
-│   ├── roc_curve.png
-│   └── model_comparison.png
-├── requirements.txt         # Dependencies
-└── README.md               # This file
+├── notebooks/
+│   └── colab_training.ipynb
+└── README.md
 ```
 
 ## Quick Start
@@ -62,37 +49,15 @@ cd disease-prediction-toolkit
 pip install -r requirements.txt
 ```
 
-### 2. Run the Pipeline
+### 2. Run in Google Colab
 
-```bash
-# Option 1: Run all notebooks in order
-jupyter notebook notebooks/eda.ipynb          # Explore the data
-jupyter notebook notebooks/training.ipynb     # Train models
-jupyter notebook notebooks/demo.ipynb         # Make predictions
-
-# Option 2: Quick demo only
-jupyter notebook notebooks/demo.ipynb
-```
+1. Open `notebooks/colab_training.ipynb` in Google Colab
+2. When prompted, upload `data/heart_dataset.csv`
+3. Run all cells to preprocess, train, evaluate, and visualize models
 
 ### 3. Make Predictions
 
-```python
-import joblib
-import pandas as pd
-
-# Load the trained model
-model = joblib.load('models/best_model.pkl')
-
-# Prepare your data (see demo.ipynb for examples)
-patient_data = pd.DataFrame([{...}])  # Your patient features
-
-# Get prediction
-risk_prediction = model.predict(patient_data)[0]
-risk_probability = model.predict_proba(patient_data)[0][1]
-
-print(f"Risk Level: {'High' if risk_prediction == 1 else 'Low'}")
-print(f"Probability: {risk_probability:.2%}")
-```
+Use the notebook outputs; metrics and plots are displayed in Colab.
 
 ## Dataset
 
@@ -188,43 +153,21 @@ _Note: Actual results may vary based on the specific dataset and random seed._
 
 ### For Data Scientists
 
-1. **Exploration**: Start with `notebooks/eda.ipynb` to understand the data
-2. **Experimentation**: Modify `notebooks/training.ipynb` to try new approaches
-3. **Evaluation**: Use the visualization tools to assess model performance
+1. **Training**: Use `notebooks/colab_training.ipynb` in Colab to train/evaluate
 
 ### For Developers
 
 1. **Integration**: Load models using `joblib.load('models/best_model.pkl')`
-2. **Prediction API**: Use the prediction function in `notebooks/demo.ipynb`
-3. **Deployment**: Models are ready for production deployment
+2. **Deployment**: Models are ready for production deployment
 
 ### For Healthcare Professionals
 
-1. **Demo**: Run `notebooks/demo.ipynb` for interactive predictions
-2. **Interpretation**: Review feature importance and risk factors
-3. **Validation**: Compare predictions with clinical expertise
+1. **Interpretation**: Review feature importance and risk factors
+2. **Validation**: Compare predictions with clinical expertise
 
 ## Installation
 
-### Requirements
-
-- Python 3.7+
-- Jupyter Notebook
-- Required packages (see requirements.txt)
-
-### Setup
-
-```bash
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Launch Jupyter
-jupyter notebook
-```
+Not required for Colab. Open the notebook in Google Colab and upload the dataset when prompted.
 
 ### Dependencies
 
@@ -239,41 +182,7 @@ jupyter notebook
 
 ## Model Deployment
 
-### Production Checklist
-
-- ✅ Models trained and validated
-- ✅ Performance metrics documented
-- ✅ Models saved with metadata
-- ✅ Prediction pipeline tested
-- ✅ Error handling implemented
-- ✅ Documentation complete
-
-### API Integration Example
-
-```python
-def predict_heart_disease_risk(patient_features):
-    """
-    Production-ready prediction function
-    """
-    import joblib
-    import pandas as pd
-
-    # Load model
-    model = joblib.load('models/best_model.pkl')
-
-    # Validate input
-    required_features = [...] # Feature list from model_info.json
-
-    # Make prediction
-    prediction = model.predict(patient_features)
-    probability = model.predict_proba(patient_features)[0][1]
-
-    return {
-        'risk_level': 'High' if prediction[0] == 1 else 'Low',
-        'probability': float(probability),
-        'confidence': 'High' if abs(probability - 0.5) > 0.3 else 'Medium'
-    }
-```
+Not applicable for Colab-only usage in this project.
 
 ## Contributing
 
@@ -318,3 +227,18 @@ For questions, suggestions, or collaboration opportunities:
 ---
 
 **Made with ❤️ for the healthcare and ML community**
+
+## What You'll Learn
+
+- End-to-end ML workflow on a healthcare dataset
+- Data preprocessing with imputers, encoding, and scaling
+- Training and comparing Logistic Regression, Decision Tree, and Random Forest
+- Evaluating with Accuracy, Precision, Recall, F1, and ROC-AUC
+- Visualizing performance via confusion matrix and ROC curve
+
+### Google Colab Usage
+
+1. Open `notebooks/colab_training.ipynb` in Google Colab
+2. When prompted, upload `data/heart_dataset.csv`
+3. Run all cells to preprocess, train, evaluate, and visualize models
+4. Review metrics in the displayed dataframe and plots
